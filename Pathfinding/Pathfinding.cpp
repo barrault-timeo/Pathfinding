@@ -94,6 +94,17 @@ void Tp(Player& player, Cursor& cursor) {
 	player.col = cursor.col;
 }
 
+void PathFinding(Player& player, Cursor& cursor) {
+
+	int MoveRow = cursor.row - player.row;
+	int MoveCol = cursor.col - player.col;
+
+	for (int i = 0; i < MoveRow; MoveRow++)
+		player.row -= 1;
+	for (int i = 0; i < MoveCol; MoveCol++)
+		player.col -= 1;
+}
+
 void Move(Player& player, Cursor& cursor) {
 
 	switch (_getch()) {
@@ -103,6 +114,7 @@ void Move(Player& player, Cursor& cursor) {
 	case's': player.Down(); break;
 	case'd': player.Right(); break;
 	case't': Tp(player, cursor); break;
+	case'p': PathFinding(player, cursor); break;
 	case'i': cursor.Up(); break;
 	case'j': cursor.Left(); break;
 	case'k': cursor.Down(); break;
@@ -110,6 +122,8 @@ void Move(Player& player, Cursor& cursor) {
 
 	}
 }
+
+
 int main()
 {
 	bool IsPlaying = true;
